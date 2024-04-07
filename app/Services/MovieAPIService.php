@@ -21,7 +21,11 @@ class MovieAPIService
         $movies = $this->fetchTrendingMovies();
 
         foreach ($movies as $movieData) {
-            Movie::create($movieData);
+            // Extract the movie ID from the data
+            $movieId = $movieData['id'];
+
+            // Update or create the movie using the movie ID as the key
+            Movie::updateOrCreate(['id' => $movieId], $movieData);
         }
 
         return $movies;

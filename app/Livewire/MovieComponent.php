@@ -10,84 +10,96 @@ class MovieComponent extends Component
 {
     use WithPagination;
 
-    public $title, $description, $selectedMovie, $isOpen, $search;
-
     // Reset pagination after search
-    protected $paginationTheme = 'bootstrap';
+    protected $paginationTheme = 'tailwind';
+
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     // Fetch movies with pagination
+    public $search;
+    public $isOpen = false;
+    public $title;
+    public $name;
+    public $selectedMovie;
+
+    protected $rules = [
+        'title' => 'required',
+        'name' => 'required',
+    ];
+
+    // Fetch movies with pagination and search
     public function render()
     {
-        $movies = Movie::where('name', 'like', '%' . $this->search . '%')
+        $movies = Movie::query()
+            ->where('title', 'like', '%' . $this->search . '%')
+            ->orWhere('name', 'like', '%' . $this->search . '%')
             ->paginate(10);
+
         return view('livewire.movie-component', [
             'movies' => $movies
         ]);
     }
 
+
     // Open the modal for creating a new movie
     public function create()
     {
-        $this->resetInputFields();
+        $this->resetValidation();
+        $this->reset();
         $this->openModal();
     }
 
     // Store a new movie in the database
     public function store()
     {
-        $validatedData = $this->validate([
-            'title' => 'required',
-            'description' => 'required',
-        ]);
+        $this->validate();
 
-        Movie::create($validatedData);
+        Movie::create([
+            'title' => $this->title,
+            'name' => $this->name,
+        ]);
 
         session()->flash('message', 'Movie created successfully.');
 
-        $this->resetInputFields();
         $this->closeModal();
     }
 
     // Open the modal for editing a movie
     public function edit($id)
     {
-        $movie = Movie::findOrFail($id);
-        $this->selectedMovie = $movie;
-        $this->title = $movie->title;
-        $this->description = $movie->description;
-
+        $this->resetValidation();
+        $this->reset();
+        $this->selectedMovie = Movie::findOrFail($id);
+        $this->title = $this->selectedMovie->title;
+        $this->name = $this->selectedMovie->name;
         $this->openModal();
     }
 
     // Update the selected movie in the database
     public function update()
     {
-        $validatedData = $this->validate([
-            'title' => 'required',
-            'description' => 'required',
-        ]);
+        $this->validate();
 
-        $this->selectedMovie->update($validatedData);
+        $this->selectedMovie->update([
+            'title' => $this->title,
+            'name' => $this->name,
+        ]);
 
         session()->flash('message', 'Movie updated successfully.');
 
-        $this->resetInputFields();
         $this->closeModal();
     }
 
     // Delete the selected movie from the database
     public function delete($id)
     {
-        Movie::find($id)->delete();
+        Movie::findOrFail($id)->delete();
 
         session()->flash('message', 'Movie deleted successfully.');
-    }
-
-    // Reset input fields
-    private function resetInputFields()
-    {
-        $this->title = '';
-        $this->description = '';
     }
 
     // Open the modal

@@ -65,3 +65,63 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # Test-Laravel-App
+
+
+# Laravel Sail Vendor Jetstream Livewire Project
+
+This repository contains a Laravel project initialized with Laravel Sail, using Jetstream for authentication management and Livewire for creating dynamic user interface components.
+
+## Introduction
+
+This project aims to provide a starting point for Laravel applications requiring user authentication, dynamic user interface components, and Docker-based development environments. It leverages Laravel Sail for easy Docker-based development environment setup, Jetstream for robust authentication features, and Livewire for creating interactive user interface components.
+
+## Features
+
+- **Laravel Sail**: Docker-based development environment for easy setup across different platforms.
+- **Jetstream**: Provides robust authentication and user management features out of the box, including two-factor authentication, profile management, and more.
+- **Livewire**: Enables creating dynamic user interface components using Laravel Blade templates and PHP, without the need for writing JavaScript.
+
+## Getting Started
+
+1. Clone this repository to your local machine:
+
+   ```bash
+   git clone <repository_url>
+Navigate to the project directory:
+
+bash
+Copy code
+cd <project_directory>
+Copy the .env.example file to .env:
+
+bash
+Copy code
+cp .env.example .env
+Start Docker containers with Sail:
+
+bash
+Copy code
+./vendor/bin/sail up -d
+Install PHP dependencies:
+
+bash
+Copy code
+./vendor/bin/sail composer install
+Generate an application key:
+
+bash
+Copy code
+./vendor/bin/sail artisan key:generate
+Migrate the database:
+
+bash
+Copy code
+./vendor/bin/sail artisan migrate
+Access the application in your browser:
+
+Web: http://localhost
+Usage
+
+Authentication: Use Jetstream authentication features for user login, registration, and profile management.
+Livewire Components: Create dynamic user interface components using Livewire components. Check the app/Http/Livewire directory for examples.
+Customization: Modify and extend the application as needed to meet your project requirements.
