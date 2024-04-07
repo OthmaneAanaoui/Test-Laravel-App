@@ -19,8 +19,9 @@ class MovieController extends Controller
 
     public function index()
     {
-        $trendingMovies = $this->movieService->storeMoviesFromAPI();
+        $movies = $this->movieService->storeMoviesFromAPI();
 
-        return response()->json($trendingMovies);
+        //return response()->json($movies);
+        return view('dashboard', compact('movies'));
     }
 }

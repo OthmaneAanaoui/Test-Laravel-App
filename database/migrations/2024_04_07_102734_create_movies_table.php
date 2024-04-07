@@ -16,6 +16,7 @@ return new class extends Migration
             $table->boolean('adult')->nullable();
             $table->string('backdrop_path')->nullable();
             $table->string('name')->nullable();
+            $table->string('title')->nullable();
             $table->string('original_language')->nullable();
             $table->string('original_name')->nullable();
             $table->text('overview')->nullable();
