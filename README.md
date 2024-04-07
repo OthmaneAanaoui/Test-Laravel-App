@@ -66,9 +66,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # Test-Laravel-App
 
-
-# Laravel Sail Vendor Jetstream Livewire Project
-
 This repository contains a Laravel project initialized with Laravel Sail, using Jetstream for authentication management and Livewire for creating dynamic user interface components.
 
 ## Introduction
@@ -86,12 +83,12 @@ This project aims to provide a starting point for Laravel applications requiring
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/OthmaneAanaoui/Test-Laravel-App.git
 Navigate to the project directory:
 
 bash
 Copy code
-cd <project_directory>
+cd (https://github.com/OthmaneAanaoui/Test-Laravel-App.git)
 Copy the .env.example file to .env:
 
 bash
