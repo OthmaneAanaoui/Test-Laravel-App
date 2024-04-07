@@ -9,9 +9,9 @@ class MovieAPIService
 {
     public function fetchTrendingMovies()
     {
-        $response = Http::get('https://api.themoviedb.org/3/trending/all/day', [
-            'api_key' => env('API_KEY')
-        ]);
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . env('API_KEY'),
+        ])->get('https://api.themoviedb.org/3/trending/all/day');
 
         return $response->json()['results'];
     }
@@ -24,6 +24,6 @@ class MovieAPIService
             Movie::create($movieData);
         }
 
-        return count($movies);
+        return $movies;
     }
 }

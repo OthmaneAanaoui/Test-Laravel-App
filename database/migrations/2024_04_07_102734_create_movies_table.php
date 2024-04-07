@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->boolean('adult');
+            $table->boolean('adult')->nullable();
             $table->string('backdrop_path')->nullable();
-            $table->string('name');
-            $table->string('original_language');
-            $table->string('original_name');
-            $table->text('overview');
+            $table->string('name')->nullable();
+            $table->string('original_language')->nullable();
+            $table->string('original_name')->nullable();
+            $table->text('overview')->nullable();
             $table->string('poster_path')->nullable();
-            $table->string('media_type');
-            $table->json('genre_ids');
-            $table->float('popularity');
-            $table->date('first_air_date');
-            $table->float('vote_average');
-            $table->integer('vote_count');
-            $table->json('origin_country');
+            $table->string('media_type')->nullable();
+            $table->json('genre_ids')->nullable();
+            $table->float('popularity')->nullable();
+            $table->date('first_air_date')->nullable();
+            $table->float('vote_average')->nullable();
+            $table->integer('vote_count')->nullable();
+            $table->json('origin_country')->nullable();
             $table->timestamps();
         });
     }
