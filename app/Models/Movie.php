@@ -13,6 +13,7 @@ class Movie extends Model
         'adult',
         'backdrop_path',
         'name',
+        'title',
         'original_language',
         'original_name',
         'overview',
