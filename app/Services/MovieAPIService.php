@@ -11,7 +11,7 @@ class MovieAPIService
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . env('API_KEY'),
-        ])->get('https://developers.themoviedb.org/3/trending/get-trending');
+        ])->get('https://api.themoviedb.org/3/trending/all/day');
 
         return $response->json()['results'];
     }
